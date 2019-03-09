@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "684894731985",
+    "firebase_url": "https://fir-795c9.firebaseio.com",
+    "project_id": "fir-795c9",
+    "storage_bucket": "fir-795c9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:684894731985:android:ad8d074a6bcc4353",
+        "android_client_info": {
+          "package_name": "com.example.wgmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "684894731985-l6chm6ctr59437iovn82m3p7k1uej969.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJphKajjWUbfgIvZlB-9gwgQL1MJsKDVc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
