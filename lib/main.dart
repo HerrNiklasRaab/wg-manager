@@ -4,11 +4,12 @@ import 'package:wgmanager/globalservice.dart';
 import 'package:wgmanager/widgets/main_page.dart';
 import 'package:wgmanager/widgets/not_authenticated_page.dart';
 import 'package:wgmanager/widgets/overlaywidget.dart';
+import 'package:wgmanager/widgets/without_workspace_page.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-    final appModel = AppModel();
+  final appModel = AppModel();
   @override
   Widget build(BuildContext context) {
     var yellow = Color.fromRGBO(255, 189, 0, 1.0);
@@ -45,7 +46,8 @@ class MyApp extends StatelessWidget {
             page = MainPage();
           } else if (model.startupStatus == StartupStatus.notAuthenticated) {
             page = NotAuthenticatedPage();
-          } 
+          } else if (model.startupStatus == StartupStatus.notFullySignedUp)
+            page = WithoutWorkspacePage();
           return page;
         }),
       ),
@@ -67,9 +69,14 @@ class AppModel extends Model {
 
   AppModel() {
     _globalService.signedInUser().then((user) async {
-      startupStatus = user == null
-          ? StartupStatus.notAuthenticated
-          : StartupStatus.signedIn;
+      if (user == null) {
+        startupStatus = StartupStatus.notAuthenticated;
+      } else {
+        if (await _globalService.currentUserIsLogedIntoAnyWorkspace()) {
+          startupStatus = StartupStatus.signedIn;
+        } else
+          startupStatus = StartupStatus.notFullySignedUp;
+      }
     });
   }
 }

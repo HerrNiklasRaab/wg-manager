@@ -19,7 +19,7 @@ class GlobalService {
         email: email.trim(), password: passord.trim());
     return fireBaseUser;
   }
-  
+
   Future<FirebaseUser> signedInUser() async {
     return _firebaseAuth.currentUser();
   }
@@ -28,9 +28,19 @@ class GlobalService {
     await _firebaseAuth.sendPasswordResetEmail(email: email);
   }
 
-  
   Future logOut() async {
     await _firebaseAuth.signOut();
   }
 
+  Future<bool> currentUserIsLogedIntoAnyWorkspace() async{
+    return false;
+  }
+
+  void createWorkspace(String code) {
+
+  }
+
+  void joinWorkspace(String code) {
+    
+  }
 }

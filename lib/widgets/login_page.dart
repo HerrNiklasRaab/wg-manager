@@ -6,6 +6,7 @@ import 'package:wgmanager/models/loginmodel.dart';
 import 'package:wgmanager/navigatorhelper.dart';
 import 'package:wgmanager/widgets/overlaywidget.dart';
 
+
 class LoginPage extends StatefulWidget {
   final Function onGoToSignUp;
 
@@ -41,7 +42,12 @@ class _LoginPageState extends State<LoginPage> {
         OverlayWidget.of(context).showOverlay = false;
       }
       OverlayWidget.of(context).showOverlay = false;
-      await NavigatorHelper(context).toMain<dynamic>();
+      if(await model.currentUserIsLogedIntoAnyWorkspace()){
+        await NavigatorHelper(context).toMain<dynamic>();
+      }
+      else{
+        await NavigatorHelper(context).toWithoutWorkspacePage<dynamic>();
+      }
     }
   }
 
@@ -92,16 +98,16 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Expanded(
-                        child: TextFormField(
+                        child: TextField(
                           textAlign: TextAlign.left,
                           keyboardType: TextInputType.emailAddress,
                           controller: loginMailTextController,
-                          validator: (value) {
+                          onChanged: (value) {
                             if (value.isEmpty) {
                               return "Bitte geben Sie Ihre E-Mail Adresse ein.";
                             }
                           },
-                          onFieldSubmitted: (value) {
+                          onSubmitted: (value) {
                             FocusScope.of(context)
                                 .requestFocus(passwordFocusNode);
                           },

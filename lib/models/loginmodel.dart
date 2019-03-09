@@ -36,4 +36,8 @@ class LoginModel extends Model {
   Future<FirebaseUser> currentUser() async {
     return await service.signedInUser();
   }
+
+  Future<bool> currentUserIsLogedIntoAnyWorkspace() async {
+    return await service.currentUserIsLogedIntoAnyWorkspace();
+  }
 }

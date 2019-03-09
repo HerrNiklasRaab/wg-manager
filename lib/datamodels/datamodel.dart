@@ -19,6 +19,7 @@ abstract class DataModel {
 class User extends DataModel {
   @override
   String get type => "User";
+  
 }
 
 class Serialization {

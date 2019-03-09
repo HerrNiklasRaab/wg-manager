@@ -3,6 +3,7 @@ import 'package:wgmanager/widgets/forgotpassword_page.dart';
 import 'package:wgmanager/widgets/main_page.dart';
 import 'package:wgmanager/widgets/not_authenticated_page.dart';
 import 'package:wgmanager/widgets/profile_page.dart';
+import 'package:wgmanager/widgets/without_workspace_page.dart';
 
 class NavigatorHelper {
   BuildContext context;
@@ -33,6 +34,13 @@ class NavigatorHelper {
     return await Navigator.of(context)
         .push<T>(MaterialPageRoute(builder: (context) {
       return ProfilePage();
+    }));
+  }
+  
+  Future<T> toWithoutWorkspacePage<T>() async {
+    return await Navigator.of(context)
+        .push<T>(MaterialPageRoute(builder: (context) {
+      return WithoutWorkspacePage();
     }));
   }
 }

@@ -43,7 +43,12 @@ class _SignUpPageState extends State<SignUpPage> {
       } finally {
         OverlayWidget.of(context).showOverlay = false;
       }
-      await NavigatorHelper(context).toMain<dynamic>();
+      if(await model.currentUserIsLogedIntoAnyWorkspace()){
+        await NavigatorHelper(context).toMain<dynamic>();
+      }
+      else{
+        await NavigatorHelper(context).toWithoutWorkspacePage<dynamic>();
+      }
     }
   }
 
